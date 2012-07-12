@@ -40,8 +40,6 @@ $my_blacklist = "/home/ahurt/Desktop/blacklists";
 function read_categories($blpath, $db) {
     // open database
     $dh = new SQLite3($db);
-    // set holding array
-    $output = array();
     // tell them what we are doing
     echo "building category list and descriptions ...\n";
     // begin transaction
@@ -60,7 +58,7 @@ function read_categories($blpath, $db) {
     }
     // end transaction
     if ($dh->query('END TRANSACTION') === false) die("ERROR ".$dh->lastErrorMsg()."\n");
-    // close database
+    // close handle
     $dh->close();
 }
 read_categories($my_blacklist, $my_db);
